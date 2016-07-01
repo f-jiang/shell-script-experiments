@@ -1,4 +1,5 @@
 #!/bin/bash
+#script #1
 
 # Print arguments
 echo "I am" $1
