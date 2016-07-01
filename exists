@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#before running script:
+#chmod +x "script name"
+
+#can $1 be found in the current directory?
+if [ -e $1 ]
+then
+	echo $1 "exists in this directory"
+else
+	echo $1 "does not exist in this directory"
+fi
