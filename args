@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Print arguments
+echo "I am" $1
+echo "You are" $2
