@@ -1,0 +1,28 @@
+#!/bin/bash
+#script #4
+
+MEDIA_DIR=/media/$USER/
+BACKUP_DIR=~/mediabackup/
+MEDIA_NAME=$1
+
+if [ ! -d $BACKUP_DIR ] ; then
+    mkdir $BACKUP_DIR
+fi
+
+#make this a one-liner
+if [ ! -d $BACKUP_DIR$MEDIA_NAME ] ; then
+    NEW_BACKUP=1
+else
+    NEW_BACKUP=0
+fi
+
+#what if media_name already has a /?
+#how to update backup if something was deleted?
+cp -rvu $MEDIA_DIR$MEDIA_NAME'/'* $BACKUP_DIR
+#quit if cp unsuccessful, and delete media dir if new backup
+
+if [ $NEW_BACKUP -eq 1 ] ; then
+    echo $(date): Created new backup of $MEDIA_NAME
+elif [ $NEW_BACKUP -eq 0 ] ; then
+    echo $(date): Updated existing backup of $MEDIA_NAME
+fi
