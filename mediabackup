@@ -15,6 +15,7 @@ fi
 
 #what if media_name already has a /?
 #how to update backup if something was deleted?
+#potential sol'n: rsync
 cp -rvu $MEDIA_DIR$MEDIA_NAME'/'* $BACKUP_DIR$MEDIA_NAME
 #quit if cp unsuccessful, and delete media dir if new backup
 
