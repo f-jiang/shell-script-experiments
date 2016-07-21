@@ -14,7 +14,7 @@ else
 fi
 
 #what if media_name already has a /?
-rsync -ru --progress --delete $MEDIA_DIR$MEDIA_NAME/ $BACKUP_DIR$MEDIA_NAME
+rsync -auz --progress --delete $MEDIA_DIR$MEDIA_NAME/ $BACKUP_DIR$MEDIA_NAME
 
 if [ $NEW_BACKUP -eq 1 ] ; then
     echo $(date): Created new backup of $MEDIA_NAME >> $BACKUP_DIR$LOG_FILE
