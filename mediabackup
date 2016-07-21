@@ -2,7 +2,7 @@
 #script #4
 
 MEDIA_DIR=/media/$USER/
-BACKUP_DIR=~/mediabackup/
+BACKUP_DIR=$HOME/mediabackup/
 MEDIA_NAME=$1
 LOG_FILE=log.txt
 
