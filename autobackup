@@ -1,0 +1,12 @@
+#!/bin/bash
+# script 5
+# used by cron to automatically back up removable media
+
+# list of removable media to back up automatically
+MEDIA=(feilan)
+
+# back up all media
+for m in "${MEDIA[@]}"; do
+    echo Backing up "$m"
+    mediabackup "$m"
+done
