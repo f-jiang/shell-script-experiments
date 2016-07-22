@@ -4,3 +4,7 @@
 - user prompt to enter account and pswd
 
 - installing my programs
+
+`mediabackup` and `autobackup`:
+- make mediabackup accept multiple arguments in one call (`mediabackup a b c`)
+- so crontab would be @weekly /usr/bin/mediabackup a b c
