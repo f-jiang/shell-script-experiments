@@ -3,7 +3,6 @@
 
 MEDIA_DIR=/media/$USER/
 BACKUP_DIR=$HOME/mediabackup/
-MEDIA_NAME=$1
 LOG_FILE=log.txt
 
 if [ "$1" == "" ] ; then
@@ -11,20 +10,26 @@ if [ "$1" == "" ] ; then
     exit
 fi
 
-# Create the backup folder if it doesn't yet exist
-if [ ! -d $BACKUP_DIR$MEDIA_NAME ] ; then
-    NEW_BACKUP=1
-    mkdir -p $BACKUP_DIR$MEDIA_NAME
-else
-    NEW_BACKUP=0
-fi
+# Repeat the backup process for each media item provided
+for m in $@
+do
+    MEDIA_NAME=$m
+    
+    # Create the backup folder if it doesn't yet exist
+    if [ ! -d $BACKUP_DIR$MEDIA_NAME ] ; then
+        NEW_BACKUP=1
+        mkdir -p $BACKUP_DIR$MEDIA_NAME
+    else
+        NEW_BACKUP=0
+    fi
 
-# Create/update backup contents
-rsync -auz --progress --delete $MEDIA_DIR$MEDIA_NAME/ $BACKUP_DIR$MEDIA_NAME
+    # Create/update backup contents
+    rsync -auz --progress --delete $MEDIA_DIR$MEDIA_NAME/ $BACKUP_DIR$MEDIA_NAME
 
-# Update backup log, indicating whether the backup is new
-if [ $NEW_BACKUP -eq 1 ] ; then
-    echo $(date): Created new backup of $MEDIA_NAME >> $BACKUP_DIR$LOG_FILE
-elif [ $NEW_BACKUP -eq 0 ] ; then
-    echo $(date): Updated existing backup of $MEDIA_NAME >> $BACKUP_DIR$LOG_FILE
-fi
+    # Update backup log, indicating whether the backup is new
+    if [ $NEW_BACKUP -eq 1 ] ; then
+        echo $(date): Created new backup of $MEDIA_NAME >> $BACKUP_DIR$LOG_FILE
+    elif [ $NEW_BACKUP -eq 0 ] ; then
+        echo $(date): Updated existing backup of $MEDIA_NAME >> $BACKUP_DIR$LOG_FILE
+    fi
+done
