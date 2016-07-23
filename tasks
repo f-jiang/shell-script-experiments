@@ -6,5 +6,4 @@
 - installing my programs
 
 `mediabackup` and `autobackup`:
-- make mediabackup accept multiple arguments in one call (`mediabackup a b c`)
-- so crontab would be @weekly /usr/bin/mediabackup a b c
+- create $BACKUP_FOLDER separately from invividual $MEDIA_FOLDERs, outside of the loop
